@@ -6,13 +6,47 @@ layout: default
 
 # Speaker View
 
-reveal.js comes with a speaker notes plugin which can be used to present per-slide notes in a separate browser window. The notes window also gives you a preview of the next upcoming slide so it may be helpful even if you haven't written any notes. Press the »S« key on your keyboard to open the notes window.
+reveal.js comes with a speaker notes plugin which can be used to present "hidden" notes in a separate browser window. The notes window also gives you a preview of the next upcoming slide so it may be helpful even if you haven't written any notes. Press the »S« key on your keyboard to open the notes window.
 
 A speaker timer starts as soon as the speaker view is opened. You can reset the timer by clicking on it.
 
-Notes are defined by appending an `<aside>` element to a slide as seen below. You can add the `data-markdown` attribute to the aside element if you prefer writing notes using Markdown.
+## Speaker notes
 
-Alternatively you can add your notes in a `data-notes` attribute on the slide. Like `<section data-notes="Something important"></section>`.
+Notes can be added to the slide or to the specific fragment. When added to fragment, notes will be shown only when that fragment is activated and will go away when you move to the next fragment.
+
+There are two ways to add notes: either by adding `<aside class="notes">` element or by using `data-notes` attribute on `<section>` or fragment element.
+
+```html
+<section>
+	<h2>Slide 1</h2>
+	<div class="fragment">
+		fragment 1
+		<aside class="notes">Fragment-level note: 1</aside>
+	</div>
+	<div class="fragment" data-notes="fragment-level note: 2">
+		fragment 2
+	</div>
+  <div class="fragment">
+    fragment without notes
+  </div>
+	<aside class="notes">Slide-level notes</aside>
+</section>
+<section data-notes="Also slide-level notes">
+	<h2>Slide 2</h2>
+</section>
+```
+
+You can add the `data-markdown` attribute to the `<aside class="notes">` element if you prefer writing notes using Markdown:
+
+```html
+<section>
+	<h2>Slide</h2>
+	<aside class="notes" data-markdown>
+		## subtitle
+		**bold text**
+	</aside>
+</section>
+```
 
 When used locally, this feature requires that reveal.js [runs from a local web server](/installation/#full-setup).
 
